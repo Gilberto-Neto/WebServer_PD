@@ -16,8 +16,12 @@ public class Cliente {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Socket socket;
+//		Socket socket;
 		Scanner sc = new Scanner(System.in);
+		
+		URLCliente input = new URLCliente(sc.nextLine());
+		
+		System.out.println(input.toString());
 		
 //		String s = "192.168.1.212:6500/index.html";
 //		String s = sc.nextLine();
@@ -27,7 +31,7 @@ public class Cliente {
 //		String porta = arquivo[0];
 //		String file = arquivo[1];
 		
-		try {
+		/*try {
 			
 			FileReader carregar = new FileReader("C:\\Users\\alexs\\eclipse-workspace\\miniProjetoPD\\miniProjetoPD_01_cliente\\src\\miniProjetoPD_01_cliente\\Arquivo.txt");
 			BufferedReader ler = new BufferedReader(carregar);
@@ -46,7 +50,7 @@ public class Cliente {
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 //		try {
 //			socket = new Socket(host,Integer.parseInt(porta));
