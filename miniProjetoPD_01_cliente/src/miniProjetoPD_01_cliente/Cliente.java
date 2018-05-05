@@ -63,8 +63,10 @@ public class Cliente {
 	        
 	        out.writeUTF(input.getFile());
 	        
-	        System.out.println(in.readUTF());
-	        
+	        while(in.readUTF()!="Fim") {
+	        	System.out.println(in.readUTF());
+	        }
+	        	        
 	        socket.close();
 
 		} catch (UnknownHostException e) {

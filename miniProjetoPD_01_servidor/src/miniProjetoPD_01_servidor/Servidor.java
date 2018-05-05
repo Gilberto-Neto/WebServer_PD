@@ -34,9 +34,13 @@ try {
 			while(linha != null) {
 				System.out.println(linha);
 				linha = ler.readLine();
+				if(linha!=null)
+					out.writeUTF(linha);
 			}
+			
+			out.writeUTF("Fim");
 			 
-			out.writeUTF("Achou!");
+//			out.writeUTF("Achou!");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
