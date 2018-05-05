@@ -16,7 +16,7 @@ public class Cliente {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-//		Socket socket;
+		Socket socket;
 		Scanner sc = new Scanner(System.in);
 		
 		URLCliente input = new URLCliente(sc.nextLine());
@@ -52,28 +52,28 @@ public class Cliente {
 			e.printStackTrace();
 		}*/
 		
-//		try {
-//			socket = new Socket(host,Integer.parseInt(porta));
-//			
-//			//escrita no servidor
-//	        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-//
-//	        //leitura do servidor
-//	        DataInputStream in = new DataInputStream(socket.getInputStream());
-//	        
-//	        out.writeUTF(file);
-//	        
-//	        System.out.println(in.readUTF());
-//	        
-//	        socket.close();
-//
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}    	        						
+		try {
+			socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
+			
+			//escrita no servidor
+	        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+	        //leitura do servidor
+	        DataInputStream in = new DataInputStream(socket.getInputStream());
+	        
+	        out.writeUTF(input.getFile());
+	        
+	        System.out.println(in.readUTF());
+	        
+	        socket.close();
+
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	        						
 				
 	}
 
