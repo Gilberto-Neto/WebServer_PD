@@ -54,11 +54,9 @@ public class Cliente implements Runnable {
 			System.out.println("Procurando pelo arquivo solicitado...");
 
 	        
-	        out.writeUTF(this.clienteInput.getFile());
+	        out.writeUTF(this.clienteInput.getFile());	        
 	        
-	        while(in.readUTF()!="Fim") {
-	        	System.out.println(in.readUTF());
-	        }
+	        System.out.println(in.readUTF());
 	        
 	        this.cliente.close();
 		

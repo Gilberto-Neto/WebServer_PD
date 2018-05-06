@@ -63,7 +63,7 @@ public class Servidor implements Runnable{
 
 		String arquivo = new String();
 		try {
-			arquivo = "C:\\pd_files\\" + in.readUTF();
+			arquivo = "C:\\Users\\alexs\\eclipse-workspace\\miniProjetoPD\\miniProjetoPD_01_servidor\\src\\miniProjetoPD_01_servidor\\" + in.readUTF();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,6 +72,7 @@ public class Servidor implements Runnable{
 
 		try {
 			FileReader carregar = new FileReader(arquivo);
+			this.response = new ResponseObject();
 			
 			if (Objects.isNull(carregar))
 				this.response.setResposta("HTTP Status 400 - Bad Request");
@@ -82,14 +83,23 @@ public class Servidor implements Runnable{
 
 			String linha = ler.readLine();
 
-			while(linha != null) {
+//			while(linha != null) {
+//				System.out.println(linha);
+//				linha = ler.readLine();
+//				if(linha!=null)
+//					out.writeUTF(linha);
+//			}
+			
+			String retorno = "";			
+			
+			while(linha != null) {		
+				retorno += linha + "\n";
+				linha = ler.readLine();					
 				System.out.println(linha);
-				linha = ler.readLine();
-				if(linha!=null)
-					out.writeUTF(linha);
 			}
-
-	
+			System.out.println(retorno);
+			out.writeUTF(retorno);
+			System.out.println("Passou!");
 			//		out.writeUTF("Achou!");
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
