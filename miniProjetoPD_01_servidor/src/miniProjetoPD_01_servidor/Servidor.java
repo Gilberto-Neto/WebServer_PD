@@ -82,29 +82,25 @@ public class Servidor implements Runnable{
 			BufferedReader ler = new BufferedReader(carregar);
 
 			String linha = ler.readLine();
-
-//			while(linha != null) {
-//				System.out.println(linha);
-//				linha = ler.readLine();
-//				if(linha!=null)
-//					out.writeUTF(linha);
-//			}
 			
-			String retorno = "";			
+			String retorno = "HTTP Status 200 - OK\n";			
 			
 			while(linha != null) {		
 				retorno += linha + "\n";
-				linha = ler.readLine();					
-				System.out.println(linha);
-			}
-			System.out.println(retorno);
+				linha = ler.readLine();									
+			}			
+						
 			out.writeUTF(retorno);
-			System.out.println("Passou!");
-			//		out.writeUTF("Achou!");
+			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-
+//			e1.printStackTrace();			
+			try {
+				out.writeUTF("HTTP Status 400 - Bad Request");
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			try {
 				this.cliente.close();
 			} catch (IOException e) {

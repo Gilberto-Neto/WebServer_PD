@@ -52,15 +52,14 @@ public class Cliente implements Runnable {
 	        DataInputStream in = new DataInputStream(this.cliente.getInputStream());
 	        
 			System.out.println("Procurando pelo arquivo solicitado...");
-
 	        
 	        out.writeUTF(this.clienteInput.getFile());	        
 	        
-	        System.out.println(in.readUTF());
 	        
+	        System.out.println(in.readUTF());	        
+	        	        
 	        this.cliente.close();
-		
-		
+				
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
