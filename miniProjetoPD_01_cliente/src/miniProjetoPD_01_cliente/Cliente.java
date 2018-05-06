@@ -1,19 +1,24 @@
 package miniProjetoPD_01_cliente;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.rmi.server.SocketSecurityException;
 import java.util.Scanner;
 
-public class Cliente {
+public class Cliente implements Runnable {
+	
+	private Socket cliente;
+	
+	private URLCliente clienteInput;
 
-	public static void main(String[] args) {
+    public Cliente(Socket cliente, URLCliente input){
+        this.cliente = cliente;
+        this.clienteInput = input;
+    }
+
+	public static void main(String[] args) throws NumberFormatException, UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		
 		Socket socket;
@@ -23,60 +28,45 @@ public class Cliente {
 		
 		System.out.println(input.toString());
 		
-//		String s = "192.168.1.212:6500/index.html";
-//		String s = sc.nextLine();
-//		String[] entradaDoCliente = s.split(":");
-//		String host = entradaDoCliente[0];
-//		String[] arquivo = entradaDoCliente[1].split("/");
-//		String porta = arquivo[0];
-//		String file = arquivo[1];
+		socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
 		
-		/*try {
-			
-			FileReader carregar = new FileReader("C:\\Users\\alexs\\eclipse-workspace\\miniProjetoPD\\miniProjetoPD_01_cliente\\src\\miniProjetoPD_01_cliente\\Arquivo.txt");
-			BufferedReader ler = new BufferedReader(carregar);
-						
-			String linha = ler.readLine();
-			
-			while(linha != null) {
-				System.out.println(linha);
-				linha = ler.readLine();
-			}
-			 
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		Cliente cliente = new Cliente (socket, input);
 		
+		Thread threadCliente = new Thread(cliente);
+		
+		threadCliente.start();
+				
+	}
+
+	@Override
+	public void run() {
+
 		try {
-			socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
+			
+			System.out.println("Conexão estabelecida com o servidor. ");
 			
 			//escrita no servidor
-	        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+	        DataOutputStream out = new DataOutputStream(this.cliente.getOutputStream());
 
 	        //leitura do servidor
-	        DataInputStream in = new DataInputStream(socket.getInputStream());
+	        DataInputStream in = new DataInputStream(this.cliente.getInputStream());
 	        
-	        out.writeUTF(input.getFile());
+			System.out.println("Procurando pelo arquivo solicitado...");
+
+	        
+	        out.writeUTF(this.clienteInput.getFile());
 	        
 	        while(in.readUTF()!="Fim") {
 	        	System.out.println(in.readUTF());
 	        }
-	        	        
-	        socket.close();
-
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	        
+	        this.cliente.close();
+		
+		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}    	        						
-				
-	}
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		} 
 
+	}
 }
