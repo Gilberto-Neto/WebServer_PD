@@ -26,16 +26,17 @@ public class Cliente implements Runnable {
 		
 		URLCliente input = new URLCliente(sc.nextLine());
 		
-		System.out.println(input.toString());
+//		System.out.println(input.toString());
 		
-		socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
-		
-		Cliente cliente = new Cliente (socket, input);
-		
-		Thread threadCliente = new Thread(cliente);
-		
-		threadCliente.start();
-				
+		try {
+			socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
+			Cliente cliente = new Cliente (socket, input);
+			Thread threadCliente = new Thread(cliente);
+			threadCliente.start();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Erro ao conectar!");
+		}						
 	}
 
 	@Override
