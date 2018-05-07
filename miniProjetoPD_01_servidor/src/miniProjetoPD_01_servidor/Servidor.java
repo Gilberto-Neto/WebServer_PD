@@ -15,7 +15,7 @@ import miniProjetoPD_01_response.ResponseObject;
 public class Servidor implements Runnable{
 
 	private Socket cliente;
-	
+
 	private ResponseObject response;
 
 	public Servidor(Socket clienteConn) {
@@ -43,7 +43,7 @@ public class Servidor implements Runnable{
 
 	@Override
 	public void run() {
-		
+
 		System.out.println("Nova conexao com o cliente " + this.cliente.getInetAddress().getHostAddress());
 
 		DataInputStream in = null;
@@ -73,28 +73,47 @@ public class Servidor implements Runnable{
 		try {
 			FileReader carregar = new FileReader(arquivo);
 			this.response = new ResponseObject();
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 30217a0c4da393c3a8de12173fed4ed64f082ec8
 			if (Objects.isNull(carregar))
 				this.response.setResposta("HTTP Status 400 - Bad Request");
-			
+
 			this.response.setResposta("HTTP Status 200 - OK");
-			
+
 			BufferedReader ler = new BufferedReader(carregar);
 
 			String linha = ler.readLine();
+<<<<<<< HEAD
 			
 			String retorno = "HTTP Status 200 - OK\n";			
 			
+=======
+
+			String retorno = "HTTP Status 200 - OK\n";			
+
+>>>>>>> 30217a0c4da393c3a8de12173fed4ed64f082ec8
 			while(linha != null) {		
 				retorno += linha + "\n";
 				linha = ler.readLine();									
 			}			
+<<<<<<< HEAD
 						
 			out.writeUTF(retorno);
 			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 //			e1.printStackTrace();			
+=======
+
+			out.writeUTF(retorno);
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			//			e1.printStackTrace();			
+>>>>>>> 30217a0c4da393c3a8de12173fed4ed64f082ec8
 			try {
 				out.writeUTF("HTTP Status 400 - Bad Request");
 			} catch (IOException e2) {
