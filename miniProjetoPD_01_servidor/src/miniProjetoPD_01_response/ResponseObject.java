@@ -7,9 +7,9 @@ public class ResponseObject implements Serializable {
 	private static final long serialVersionUID = -1960324017687069550L;
 
 	private String statusCode;
-	
+
 	private String resposta;
-	
+
 	public ResponseObject() {}
 
 	public String getStatusCode() {
@@ -27,8 +27,8 @@ public class ResponseObject implements Serializable {
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
 	}
-	
-	
-	
+
+
+
 
 }
