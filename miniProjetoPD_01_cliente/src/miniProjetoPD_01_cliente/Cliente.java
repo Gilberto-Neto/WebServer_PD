@@ -23,21 +23,33 @@ public class Cliente implements Runnable {
 		// TODO Auto-generated method stub
 
 		Socket socket = null;
-		Scanner sc = new Scanner(System.in);
+		
+		String urlEval = new String();
+		
+		URLCliente input = null;
+		
+		System.out.println("Digite uma url válida. Ex: 0.0.0.0:porta/arquivo");
+		
+		do {
+			Scanner sc = new Scanner(System.in);
+			
+			String url = sc.nextLine();
+			
+			urlEval = url;
+			
+			input = new URLCliente(urlEval);
+			
+		} while (input.entradaUrl(urlEval) == false);
+		
 
-		URLCliente input = new URLCliente(sc.nextLine());
+//		URLCliente input = new URLCliente(urlEval);
 
-		System.out.println(input.toString());
+//		System.out.println(input.toString());
 
 		HashMap<String, String> dadosUrl = input.infoUrl();
 
 		String host = dadosUrl.get("host");
 		String porta = dadosUrl.get("porta");
-
-		while(input.entradaUrl(host) == false) {
-			System.out.println("Digite um ip válido. Ex: 0.0.0.0:porta/arquivo");	
-		}
-
 
 		try {
 			socket = new Socket(host,Integer.parseInt(porta));

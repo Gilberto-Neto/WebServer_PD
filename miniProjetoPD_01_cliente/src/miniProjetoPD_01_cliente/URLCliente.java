@@ -36,9 +36,9 @@ public class URLCliente {
 	}
 
 
-	public boolean entradaUrl(String host) {
+	public boolean entradaUrl(String url) {
 
-		if(host.matches("[a-z](.*)") || this.host.matches("[A-Z](.*)") )
+		if(url.matches("[a-z](.*)") || url.matches("[A-Z](.*)") )
 			return false;
 
 		return true;
