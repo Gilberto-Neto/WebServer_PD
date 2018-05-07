@@ -26,20 +26,6 @@ public class Cliente implements Runnable {
 		Scanner sc = new Scanner(System.in);
 
 		URLCliente input = new URLCliente(sc.nextLine());
-<<<<<<< HEAD
-		
-//		System.out.println(input.toString());
-		
-		try {
-			socket = new Socket(input.getHost(),Integer.parseInt(input.getPort()));
-			Cliente cliente = new Cliente (socket, input);
-			Thread threadCliente = new Thread(cliente);
-			threadCliente.start();
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("Erro ao conectar!");
-		}						
-=======
 
 		System.out.println(input.toString());
 
@@ -65,7 +51,6 @@ public class Cliente implements Runnable {
 			System.out.println("Erro ao conectar com o servidor!");
 		}
 
->>>>>>> 30217a0c4da393c3a8de12173fed4ed64f082ec8
 	}
 
 	@Override
@@ -82,16 +67,6 @@ public class Cliente implements Runnable {
 			DataInputStream in = new DataInputStream(this.cliente.getInputStream());
 
 			System.out.println("Procurando pelo arquivo solicitado...");
-<<<<<<< HEAD
-	        
-	        out.writeUTF(this.clienteInput.getFile());	        
-	        
-	        
-	        System.out.println(in.readUTF());	        
-	        	        
-	        this.cliente.close();
-				
-=======
 
 			out.writeUTF(this.clienteInput.getFile());	        
 
@@ -100,7 +75,6 @@ public class Cliente implements Runnable {
 
 			this.cliente.close();
 
->>>>>>> 30217a0c4da393c3a8de12173fed4ed64f082ec8
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
