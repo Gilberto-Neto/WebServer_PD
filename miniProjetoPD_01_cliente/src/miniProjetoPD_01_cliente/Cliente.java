@@ -28,9 +28,9 @@ public class Cliente implements Runnable {
 		
 		URLCliente input = null;
 		
-		System.out.println("Digite uma url válida. Ex: 0.0.0.0:porta/arquivo");
-		
 		do {
+			
+			System.out.println("Digite uma url válida. Ex: 0.0.0.0:porta/arquivo");
 			Scanner sc = new Scanner(System.in);
 			
 			String url = sc.nextLine();
